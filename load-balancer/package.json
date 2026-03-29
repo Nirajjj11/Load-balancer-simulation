@@ -4,5 +4,18 @@
     "dotenv": "^17.3.1",
     "express": "^5.2.1",
     "morgan": "^1.10.1"
+  },
+  "name": "load-balancer-project",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+  "server1": "cd servers && cross-env PORT=3001 node src/server.js",
+  "server2": "cd servers && cross-env PORT=3002 node src/server.js",
+  "server3": "cd servers && cross-env PORT=3003 node src/server.js",
+  "loadbalancer": "cd load-balancer && node src/index.js",
+  "start": "concurrently \"npm run server1\" \"npm run server2\" \"npm run server3\" \"npm run loadbalancer\""
+},
+  "devDependencies": {
+    "concurrently": "^9.2.1"
   }
 }
