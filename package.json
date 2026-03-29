@@ -1,0 +1,35 @@
+{
+  "name": "load-balancer-simulation",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+  "server1": "cross-env PORT=3001 node ./servers/src/server.js",
+  "server2": "cross-env PORT=3002 node ./servers/src/server.js",
+  "server3": "cross-env PORT=3003 node ./servers/src/server.js",
+
+  "loadbalancer": "node ./load-balancer/src/index.js",
+
+  "client": "node ./client/src/loadTest.js",
+
+  "start": "concurrently \"npm run server1\" \"npm run server2\" \"npm run server3\" \"npm run loadbalancer\""
+},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nirajjj11/Load-balancer-simulation.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Nirajjj11/Load-balancer-simulation/issues"
+  },
+  "homepage": "https://github.com/Nirajjj11/Load-balancer-simulation#readme",
+  "description": "",
+  "dependencies": {
+    "axios": "^1.14.0",
+    "concurrently": "^9.2.1",
+    "cross-env": "^10.1.0",
+    "dotenv": "^17.3.1",
+    "express": "^5.2.1"
+  }
+}
