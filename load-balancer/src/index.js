@@ -1,13 +1,32 @@
-const express = require("express");
-const routes = require("./routes/apiRoutes");
-const logger = require("./utils/logger");
-const { PORT } = require("./config");
+const express = require('express');
+const axios = require('axios');
 
 const app = express();
 
-app.use(logger);
-app.use("/", routes);
+const servers = [
+      'http://localhost:3001',
+      'http://localhost:3002',
+      'http://localhost:3003'
+];
 
-app.listen(PORT, () => {
-      console.log(`Load Balancer running on ${PORT}`);
+let current = 0;
+
+app.get('/', async (req, res) => {
+      try {
+            const server = servers[current];
+            current = (current + 1) % servers.length;
+
+            console.log(`Forwarding request to ${server}`);
+
+            const response = await axios.get(server);
+
+            res.send(response.data);
+
+      } catch (error) {
+            res.status(500).send('Server error');
+      }
+});
+
+app.listen(4000, () => {
+      console.log('Load Balancer running on 4000');
 });
