@@ -1,3 +1,5 @@
+// This is the blast mode Testing at the max level
+
 const axios = require('axios');
 
 const TOTAL_REQUESTS = 10000;
