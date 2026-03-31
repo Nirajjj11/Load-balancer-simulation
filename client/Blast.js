@@ -6,6 +6,7 @@ const TOTAL_REQUESTS = 10000;
 
 async function run() {
       const requests = [];
+      
 
       for (let i = 0; i < TOTAL_REQUESTS; i++) {
             requests.push(axios.get('http://localhost:4000'));
