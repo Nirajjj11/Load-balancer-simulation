@@ -3,8 +3,10 @@ const app = express();
 
 const PORT = process.env.PORT || 3001;
 
+let count = 0
 app.get('/', (req, res) => {
-      console.log(`Handled by ${PORT} at ${new Date()}`);
+      count++
+      console.log(`${count} Handled by ${PORT} at ${new Date()}`);
       res.send(`Response from Server ${PORT}`);
 });
 
